@@ -186,7 +186,7 @@ export const SceneNodeInspectorPanel: React.FC = () => {
           defaultExpanded
         >
           <FormField label={intl.formatMessage({ defaultMessage: 'Name', description: 'Form field label' })}>
-            <TextInput value={selectedSceneNode.name} setValue={(e) => handleInputChanges({ name: e?.toString() })} />
+            <TextInput data-tet-id={selectedSceneNode.ref} value={selectedSceneNode.name} setValue={(e) => handleInputChanges({ name: e?.toString() })} />
           </FormField>
         </ExpandableInfoSection>
         {!isEnvironmentNode(selectedSceneNode) && transformVisible && (
