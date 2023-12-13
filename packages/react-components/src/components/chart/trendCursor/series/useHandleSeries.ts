@@ -22,7 +22,7 @@ export const useHandleSeries = ({
     visualizationRef.current = visualization;
     seriesRef.current = series;
     significantDigitsRef.current = significantDigits;
-  }, [graphic, visualization, series, significantDigits]);
+  }, [graphic, visualization, series, significantDigits]); //find a way to trigger this re-render without rerenering the whole component
 
   useEffect(() => {
     const update = () => {
@@ -44,5 +44,5 @@ export const useHandleSeries = ({
     };
 
     delayedRender({ updateFunction: update });
-  }, [chartRef, series.length, setGraphic]);
+  }, [chartRef, series, setGraphic]);
 };

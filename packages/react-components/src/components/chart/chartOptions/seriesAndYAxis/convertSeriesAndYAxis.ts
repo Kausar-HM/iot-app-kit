@@ -68,9 +68,15 @@ const convertSeries = (
     lineThickness,
     emphasis,
     significantDigits,
+    hidden,
   }: ChartStyleSettingsWithDefaults
 ) => {
-  const opacity = emphasis === 'de-emphasize' ? DEEMPHASIZE_OPACITY : 1;
+  let opacity = 1;
+  if (hidden) {
+    opacity = 0;
+  } else if (emphasis === 'de-emphasize') {
+    opacity = DEEMPHASIZE_OPACITY;
+  }
   const scaledSymbolSize = emphasis === 'emphasize' ? symbolSize + EMPHASIZE_SCALE_CONSTANT : symbolSize;
   const scaledLineThickness = emphasis === 'emphasize' ? lineThickness + EMPHASIZE_SCALE_CONSTANT : lineThickness;
 
