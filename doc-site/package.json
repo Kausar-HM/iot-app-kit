@@ -1,12 +1,12 @@
 {
   "name": "@iot-app-kit/doc-site",
   "private": true,
-  "version": "4.0.0",
+  "version": "5.0.0",
   "dependencies": {
-    "@iot-app-kit/core": "^5.3.0",
-    "@iot-app-kit/dashboard": "^5.3.0",
-    "@iot-app-kit/testing-util": "^5.3.0",
-    "@iot-app-kit/react-components": "^5.3.0",
+    "@iot-app-kit/core": "^9.8.0",
+    "@iot-app-kit/dashboard": "^9.8.0",
+    "@iot-app-kit/react-components": "^9.8.0",
+    "@iot-app-kit/testing-util": "^9.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -24,10 +24,14 @@
     "@storybook/addon-interactions": "^7.0.0-rc.5",
     "@storybook/addon-links": "^7.0.0-rc.5",
     "@storybook/blocks": "^7.0.0-rc.5",
+    "@storybook/preset-scss": "^1.0.3",
     "@storybook/react": "^7.0.0-rc.5",
     "@storybook/react-webpack5": "^7.0.0-rc.5",
     "@storybook/testing-library": "^0.0.14-next.1",
+    "css-loader": "^6.8.1",
     "prop-types": "^15.8.1",
-    "storybook": "^7.0.0-rc.5"
+    "sass-loader": "^13.3.2",
+    "storybook": "^7.0.0-rc.5",
+    "style-loader": "^3.3.3"
   }
 }

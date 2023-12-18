@@ -12,7 +12,7 @@
     "build:cjs": "tsc -p ./tsconfig.build.json --outDir ./dist/cjs --module CommonJS",
     "clean": "rm -rf dist",
     "lint": "eslint . --max-warnings=1",
-    "fix": "eslint --fix ."
+    "lint-fix": "eslint --fix ."
   },
   "dependencies": {
     "@iot-app-kit/core": "9.11.0",
