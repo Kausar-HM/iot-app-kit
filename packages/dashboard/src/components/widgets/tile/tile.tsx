@@ -39,30 +39,30 @@ import { CSVDownloadButton } from '~/components/csvDownloadButton';
 import { StyledSiteWiseQueryConfig } from '~/customization/widgets/types';
 import { useClients } from '~/components/dashboard/clientContext';
 
-type DeletableTileActionProps = {
-  handleDelete: CancelableEventHandler<ClickDetail>;
-};
+// type DeletableTileActionProps = {
+//   handleDelete: CancelableEventHandler<ClickDetail>;
+// };
 
-const DeletableTileAction = ({
-  handleDelete,
-  variant,
-}: DeletableTileActionProps & ButtonProps) => {
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-  };
+// const DeletableTileAction = ({
+//   handleDelete,
+//   variant,
+// }: DeletableTileActionProps & ButtonProps) => {
+//   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+//     e.stopPropagation();
+//   };
 
-  return (
-    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <div onMouseDown={handleMouseDown}>
-      <Button
-        onClick={handleDelete}
-        ariaLabel='delete widget'
-        variant={variant ?? 'icon'}
-        iconName='close'
-      />
-    </div>
-  );
-};
+//   return (
+//     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+//     <div onMouseDown={handleMouseDown}>
+//       <Button
+//         onClick={handleDelete}
+//         ariaLabel='delete widget'
+//         variant={variant ?? 'icon'}
+//         iconName='close'
+//       />
+//     </div>
+//   );
+// };
 
 export type WidgetTileProps = PropsWithChildren<{
   widget: DashboardWidget;
@@ -76,59 +76,59 @@ export type WidgetTileProps = PropsWithChildren<{
  */
 const WidgetTile: React.FC<WidgetTileProps> = ({ children, widget, title }) => {
   const isReadOnly = useSelector((state: DashboardState) => state.readOnly);
-  const dispatch = useDispatch();
-  const [visible, setVisible] = useState(false);
-  const [showActionButtons, setShowActionButtons] = useState(false);
-  const { onDelete } = useDeleteWidgets();
-  const metricsRecorder = getPlugin('metricsRecorder');
+  // const dispatch = useDispatch();
+  // const [visible, setVisible] = useState(false);
+  // const [showActionButtons, setShowActionButtons] = useState(false);
+  // const { onDelete } = useDeleteWidgets();
+  // const metricsRecorder = getPlugin('metricsRecorder');
   const { iotSiteWiseClient } = useClients();
-  const selectedWidgets = useSelector(
-    (state: DashboardState) => state.selectedWidgets
-  );
-  const enableActionButtons = !isReadOnly && showActionButtons;
+  // const selectedWidgets = useSelector(
+  //   (state: DashboardState) => state.selectedWidgets
+  // );
+  // const enableActionButtons = !isReadOnly && showActionButtons;
   const headerVisible =
     (!isReadOnly && widget.type !== 'text') || widget.type !== 'text';
 
-  const handleDelete: CancelableEventHandler<ClickDetail> = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    dispatch(onChangeDashboardGridEnabledAction({ enabled: false }));
-    setVisible(true);
-  };
+  // const handleDelete: CancelableEventHandler<ClickDetail> = (e) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   dispatch(onChangeDashboardGridEnabledAction({ enabled: false }));
+  //   setVisible(true);
+  // };
 
-  const handleCloseModal = () => {
-    dispatch(onChangeDashboardGridEnabledAction({ enabled: true }));
-    setVisible(false);
-  };
+  // const handleCloseModal = () => {
+  //   dispatch(onChangeDashboardGridEnabledAction({ enabled: true }));
+  //   setVisible(false);
+  // };
 
-  const handleSubmit = () => {
-    const widgetType = widget.type;
-    onDelete(widget);
-    dispatch(onChangeDashboardGridEnabledAction({ enabled: true }));
-    setVisible(false);
+  // const handleSubmit = () => {
+  //   const widgetType = widget.type;
+  //   onDelete(widget);
+  //   dispatch(onChangeDashboardGridEnabledAction({ enabled: true }));
+  //   setVisible(false);
 
-    metricsRecorder?.record({
-      contexts: {
-        widgetType,
-      },
-      metricName: 'DashboardWidgetDelete',
-      metricValue: 1,
-    });
-  };
+  //   metricsRecorder?.record({
+  //     contexts: {
+  //       widgetType,
+  //     },
+  //     metricName: 'DashboardWidgetDelete',
+  //     metricValue: 1,
+  //   });
+  // };
 
-  const toggleActionButtons = useCallback(() => {
-    if (selectedWidgets && selectedWidgets.find((w) => w.id === widget.id))
-      setShowActionButtons(true);
-    else setShowActionButtons(false);
-  }, [selectedWidgets, widget.id]);
+  // const toggleActionButtons = useCallback(() => {
+  //   if (selectedWidgets && selectedWidgets.find((w) => w.id === widget.id))
+  //     setShowActionButtons(true);
+  //   else setShowActionButtons(false);
+  // }, [selectedWidgets, widget.id]);
 
-  const handleOnMouseLeave = () => {
-    toggleActionButtons();
-  };
+  // const handleOnMouseLeave = () => {
+  //   toggleActionButtons();
+  // };
 
-  useEffect(() => {
-    toggleActionButtons();
-  }, [toggleActionButtons]);
+  // useEffect(() => {
+  //   toggleActionButtons();
+  // }, [toggleActionButtons]);
 
   return (
     <div
@@ -139,10 +139,10 @@ const WidgetTile: React.FC<WidgetTileProps> = ({ children, widget, title }) => {
         borderRadius: borderRadiusBadge,
         backgroundColor: colorBackgroundContainerContent,
       }}
-      onMouseEnter={() => setShowActionButtons(true)}
-      onMouseLeave={handleOnMouseLeave}
+      // onMouseEnter={() => setShowActionButtons(true)}
+      // onMouseLeave={handleOnMouseLeave}
     >
-      {enableActionButtons && (
+      {/* {enableActionButtons && (
         <div
           className='tile-button-container'
           style={{
@@ -190,7 +190,7 @@ const WidgetTile: React.FC<WidgetTileProps> = ({ children, widget, title }) => {
             handleSubmit={handleSubmit}
           />
         </div>
-      )}
+      )} */}
 
       {headerVisible && (
         <div

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   gestureable,
   idable,
@@ -9,6 +9,9 @@ import './widget.css';
 import type { SiteWiseQuery } from '@iot-app-kit/source-iotsitewise';
 import type { DashboardMessages } from '~/messages';
 import type { DashboardWidget } from '~/types';
+import { useSelector } from 'react-redux';
+import { DashboardState } from '~/store/state';
+import WidgetActions from './widgetActions';
 
 export type WidgetProps = {
   readOnly: boolean;
@@ -32,6 +35,22 @@ const WidgetComponent: React.FC<WidgetProps> = ({
   readOnly,
 }) => {
   const { x, y, z, width, height } = widget;
+  const isReadOnly = useSelector((state: DashboardState) => state.readOnly);
+  const [hover, setHover] = useState(false);
+  // const selectedWidgets = useSelector(
+  //   (state: DashboardState) => state.selectedWidgets
+  // );
+  const enableActionButtons = !isReadOnly && hover;
+
+  // const toggleActionButtons = useCallback(() => {
+  //   if (selectedWidgets && selectedWidgets.find((w) => w.id === widget.id))
+  //     setHover(true);
+  //   else setHover(false);
+  // }, [selectedWidgets, widget.id]);
+
+  // useEffect(() => {
+  //   toggleActionButtons();
+  // }, [toggleActionButtons]);
 
   return (
     <div
@@ -45,7 +64,10 @@ const WidgetComponent: React.FC<WidgetProps> = ({
         width: `${cellSize * width}px`,
         height: `${cellSize * height}px`,
       }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
     >
+      {enableActionButtons && <WidgetActions widget={widget} />}
       <DynamicWidgetComponent
         widget={widget}
         widgetsMessages={messageOverrides.widgets}
